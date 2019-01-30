@@ -1,0 +1,15 @@
+<p>
+  cart-display works!
+</p>
+<div class="container" *ngIf="itemsInCart">
+  <div class="items" *ngFor="let cart of itemsInCart; index as i">
+    <div class="card">
+      <p>Name: {{cart.item.name}}</p>
+      <p>Price: {{cart.item.price}}</p>
+      <p>Count: {{cart.count}}</p>
+      <button (click)="addMoreOfItem(cart.item)">Add</button>
+      <button (click)="removeOfItem(cart.item)">Remove</button>
+      <button [routerLink]="[ '/catalog/item', cart.item.id]">Detail</button>
+    </div>
+  </div>
+</div>

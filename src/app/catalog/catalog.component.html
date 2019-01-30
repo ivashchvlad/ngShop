@@ -1,0 +1,15 @@
+<p>CATALOG WORKS</p>
+
+<div class="container">
+  <div *ngIf='items' class="catalog">
+    <div *ngFor='let item of items' class="workstation">
+      <div class="itemCard">
+        <h1>{{item.name}}</h1>
+        <p>{{item.descriptions}}</p>
+        <p>{{item.price}}</p>
+        <button [routerLink]="['/catalog/item/', item.id]">Details</button>
+        <button (click)="itemService.addToCart(item)">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+</div>
