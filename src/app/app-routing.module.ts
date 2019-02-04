@@ -5,6 +5,7 @@ import { CatalogComponent } from './catalog/catalog.component';
 import { ItemComponent } from './item/item.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { CartDisplaComponent } from './cart-displa/cart-displa.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,11 @@ const routes: Routes = [
     path: 'cart',
     component: CartDisplaComponent,
     data: {title: 'Cart'}
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+    data: {title: 'Login'}
   },
   {
     path: '404',

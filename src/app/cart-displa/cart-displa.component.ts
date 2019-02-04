@@ -17,9 +17,11 @@ export class CartDisplaComponent implements OnInit {
 
   addMoreOfItem(item: Item) {
     this.itemService.addToCart(item);
+    this.itemsInCart.find(cart => cart.item.id === item.id).count++;
   }
 
   removeOfItem(item: Item) {
     this.itemService.removeFromCart(item);
+    this.itemsInCart.find(cart => cart.item.id === item.id).count--;
   }
 }

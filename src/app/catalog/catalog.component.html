@@ -2,7 +2,7 @@
 
 <div class="container">
   <div *ngIf='items' class="catalog">
-    <div *ngFor='let item of items' class="workstation">
+    <div *ngFor='let item of items | async' class="workstation">
       <div class="itemCard">
         <h1>{{item.name}}</h1>
         <p>{{item.descriptions}}</p>

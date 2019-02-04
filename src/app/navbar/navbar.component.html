@@ -3,4 +3,6 @@
   <a [routerLink]="[ '/catalog']">Catalog</a>
   <a [routerLink]="[ '/cart' ]">Cart: {{itemService.getCartCount()}}</a>
   <button (click)="itemService.clearLocalStorage()">CLEAR</button>
+  <a *ngIf="!authService.isLoggedIn()" [routerLink]="[ '/login']">Login</a>
+  <a *ngIf="authService.isLoggedIn()" (click)="authService.logout()" href="">Logout</a>
 </nav>
