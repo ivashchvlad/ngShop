@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Item } from '../item';
 import { Title } from '@angular/platform-browser';
+import * as firebase from 'firebase';
 
 @Injectable({
   providedIn: 'root'
@@ -18,18 +19,19 @@ export class ItemService {
 
   getItems(): Observable<Item[]> {
     return this.afs.collection<Item>('items')
-    .snapshotChanges()
-    .pipe(
-      map(actions => {
-        return actions.map(a => {
-        // Get document data
-        const data = a.payload.doc.data() as Item;
-        // Get document id
-        const id = a.payload.doc.id;
-        // Use spread operator to add the id to the document data
-        return { id, ...data };
-      });
-    }));
+      .snapshotChanges()
+      .pipe(
+        map(actions => {
+          return actions.map(a => {
+            // Get document data
+            const data = a.payload.doc.data() as Item;
+            // Get document id
+            const id = a.payload.doc.id;
+            // Use spread operator to add the id to the document data
+            return { id, ...data };
+          });
+        })
+      );
   }
 
   getById(id: string): Observable<Item> {
@@ -116,9 +118,31 @@ export class ItemService {
   clearLocalStorage() {
     localStorage.clear();
   }
+
+  getOrders() {
+    return this.afs.collection<Order>('orders').snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(a => {
+          // Get document data
+          const data = a.payload.doc.data() as Order;
+          // Get document id
+          const id = a.payload.doc.id;
+          // Use spread operator to add the id to the document data
+          return { id, ...data };
+        });
+      })
+    );
+  }
 }
 
 export interface Cart {
   item: Item;
   count: number;
+}
+export interface Order {
+  id: string;
+  counts: string[];
+  date: Date;
+  itemsId: string[];
+  userId: string;
 }

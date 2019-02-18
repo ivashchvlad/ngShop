@@ -24,4 +24,12 @@ export class CartDisplaComponent implements OnInit {
     this.itemService.removeFromCart(item);
     this.itemsInCart.find(cart => cart.item.id === item.id).count--;
   }
+
+  totalPrice() {
+    let totalPrice = 0;
+    this.itemsInCart.map((item) => {
+      return totalPrice += item.item.price * item.count;
+    });
+    return totalPrice;
+  }
 }

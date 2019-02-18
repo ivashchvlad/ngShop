@@ -1,0 +1,42 @@
+<p>
+  admin-panel works!
+</p>
+<div class="container">
+  <div class="items">
+    <div *ngFor="let item of items">
+      <div class="card">
+        <div class="itemCard">
+          <input type="text" [(ngModel)]="item.name">
+          <input type="text" [(ngModel)]="item.description">
+          <input type="text" [(ngModel)]="item.price">
+          <button (click)="deleteItem(item)">Delete Item</button>
+          <button (click)="editItem(item)">Edit Item</button>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="itemCard">
+        <input type="text" placeholder="name" [(ngModel)]="newItem.name">
+        <input type="text" placeholder="description" [(ngModel)]="newItem.description">
+        <input type="text" placeholder="price" [(ngModel)]="newItem.price">
+        <button (click)="createItem()">Create Item</button>
+      </div>
+    </div>
+  </div>
+  <div class="cart" *ngIf="items">
+    <table style="width:100%">
+      <tr>
+        <th>UserName</th>
+        <th>Item</th>
+        <th>Count</th>
+        <th>Date</th>
+      </tr>
+      <tr *ngFor="let order of orders">
+        <td>{{order.userId}}</td>
+        <td><p *ngFor="let name of getItemNames()">{{name}}</p></td>
+        <td><p *ngFor="let count of order.counts">{{count}}</p></td>
+        <td>{{order.date.seconds * 1000 | date:'dd.MM.yyyy'}}</td>
+      </tr>
+    </table>
+  </div>
+</div>

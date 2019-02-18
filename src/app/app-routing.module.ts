@@ -6,6 +6,7 @@ import { ItemComponent } from './item/item.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { CartDisplaComponent } from './cart-displa/cart-displa.component';
 import { LoginComponent } from './login/login.component';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 
 const routes: Routes = [
   {
@@ -32,6 +33,11 @@ const routes: Routes = [
     path: 'login',
     component: LoginComponent,
     data: {title: 'Login'}
+  },
+  {
+    path: 'admin',
+    component: AdminPanelComponent,
+    data: {title: 'Admin Panel'}
   },
   {
     path: '404',
