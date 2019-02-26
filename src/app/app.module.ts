@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,8 +17,10 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { CartDisplaComponent } from './cart-displa/cart-displa.component';
 import { LoginComponent } from './login/login.component';
 import { UserSettingsComponent } from './user-settings/user-settings.component';
-import { AngularFirestore } from '@angular/fire/firestore';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
+import { MyOrdersComponent } from './my-orders/my-orders.component';
+
+import { OrderModule } from 'ngx-order-pipe';
 
 @NgModule({
   declarations: [
@@ -30,13 +33,15 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';
     CartDisplaComponent,
     LoginComponent,
     UserSettingsComponent,
-    AdminPanelComponent
+    AdminPanelComponent,
+    MyOrdersComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
+    OrderModule,
   ],
   providers: [
     AngularFireAuth,

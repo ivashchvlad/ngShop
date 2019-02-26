@@ -1,19 +1,24 @@
-<p>
-  cart-display works!
-</p>
-<div class="container" *ngIf="itemsInCart">
-  <div class="items" *ngFor="let cart of itemsInCart; index as i">
-    <div class="card">
-      <p>Name: {{cart.item.name}}</p>
-      <p>Price: {{cart.item.price}}</p>
-      <p>Count: {{cart.count}}</p>
-      <button (click)="addMoreOfItem(cart.item)">Add</button>
-      <button (click)="removeOfItem(cart.item)">Remove</button>
-      <button [routerLink]="[ '/catalog/item', cart.item.id]">Detail</button>
+<div *ngIf="itemsInCart.length===0" class="container text-center m-3">
+  <h3>Your cart is empty! Add items to your cart.</h3>
+</div>
+<div class="container" *ngIf="itemsInCart.length>0">
+  <div class="d-flex flex-column justify-content-center">
+    <div class="items card my-2" *ngFor="let cart of itemsInCart; index as i">
+      <div class="card-body">
+        <p>Name: {{cart.item.name}}</p>
+        <p>Price: {{cart.item.price}}</p>
+        <p>Count: {{cart.count}}</p>
+        <button class="btn btn-outline-primary mr-2" (click)="addMoreOfItem(cart.item)">Add</button>
+        <button class="btn btn-outline-danger mr-2" (click)="removeOfItem(cart.item)">Remove</button>
+        <button class="btn btn-outline-info mr-2" [routerLink]="[ '/catalog/item', cart.item.id]">Detail</button>
+      </div>
     </div>
   </div>
   <div class="totalPrice">
     <h3>Total Price:</h3>
     <p>{{totalPrice()}}</p>
+  </div>
+  <div>
+    <button class="btn btn-success" (click)="submitOrder()">Submit the Order</button>
   </div>
 </div>

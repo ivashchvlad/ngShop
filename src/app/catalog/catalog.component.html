@@ -1,14 +1,24 @@
-<p>CATALOG WORKS</p>
-
 <div class="container">
   <div *ngIf='items' class="catalog">
-    <div *ngFor='let item of items | async' class="workstation">
-      <div class="itemCard">
-        <h1>{{item.name}}</h1>
-        <p>{{item.descriptions}}</p>
-        <p>{{item.price}}</p>
-        <button [routerLink]="['/catalog/item/', item.id]">Details</button>
-        <button (click)="itemService.addToCart(item)">Add to Cart</button>
+    <div class="filers">
+      <p>Order by:</p>
+      <input class="mr-2" type="checkbox" name="byName" id="byName" [checked]="byNameCheck" (click)="setOrder('name')">
+      <label class="mr-3" for="byName">by name</label>
+      <input class="mr-2" type="checkbox" name="byPrice" id="byPrice" (click)="setOrder('price')">
+      <label for="byPrice">by price</label>
+    </div>
+    <div class="d-inline-flex flex-column flex-md-row flex-wrap">
+      <div class="card m-2"
+        *ngFor="let item of ((items | async) | orderBy:sortOrder:reverse:'case-insensitive')">
+        <div>
+          <div class="card-body">
+            <h1>{{item.name}}</h1>
+            <p>{{item.description}}</p>
+            <p>{{item.price}}</p>
+            <button class="btn btn-outline-primary mr-2" [routerLink]="['/catalog/item/', item.id]">Details</button>
+            <button class="btn btn-outline-primary" (click)="itemService.addToCart(item)">Add to Cart</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>

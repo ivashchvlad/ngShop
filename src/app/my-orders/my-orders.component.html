@@ -1,0 +1,13 @@
+<div *ngIf="orders&&items" class="container">
+  <div class="d-flex flex-column">
+    <div class="order" *ngFor="let order of orders; index as i">
+      <div class="card w-100 my-2">
+        <div class="card-body">
+          <h5 class="card-title">№ {{order.id}}</h5>
+          <p>Items:</p>
+          <p *ngFor="let name of getItemNames(order); index as j">{{name}} x{{order.counts[j]}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,31 +1,28 @@
-<p>
-  admin-panel works!
-</p>
-<div class="container">
+<div class="container my-3">
   <div class="items">
     <div *ngFor="let item of items">
-      <div class="card">
-        <div class="itemCard">
-          <input type="text" [(ngModel)]="item.name">
-          <input type="text" [(ngModel)]="item.description">
-          <input type="text" [(ngModel)]="item.price">
-          <button (click)="deleteItem(item)">Delete Item</button>
-          <button (click)="editItem(item)">Edit Item</button>
+      <div class="">
+        <div class="itemCard row">
+          <input class="form-control col mr-2 mb-2" type="text" [(ngModel)]="item.name">
+          <input class="form-control col mr-2 mb-2" type="text" [(ngModel)]="item.description">
+          <input class="form-control col mr-2 mb-2" type="text" [(ngModel)]="item.price">
+          <button class="btn btn-danger col mr-2 mb-2" (click)="deleteItem(item)">Delete</button>
+          <button class="btn btn-primary col mr-2 mb-2" (click)="editItem(item)">Edit</button>
         </div>
       </div>
     </div>
-    <div class="card">
-      <div class="itemCard">
-        <input type="text" placeholder="name" [(ngModel)]="newItem.name">
-        <input type="text" placeholder="description" [(ngModel)]="newItem.description">
-        <input type="text" placeholder="price" [(ngModel)]="newItem.price">
-        <button (click)="createItem()">Create Item</button>
+    <div class="">
+      <div class="itemCard row">
+        <input class="form-control col mr-2 mb-2" type="text" placeholder="name" [(ngModel)]="newItem.name">
+        <input class="form-control col mr-2 mb-2" type="text" placeholder="description" [(ngModel)]="newItem.description">
+        <input class="form-control col mr-2 mb-2" type="text" placeholder="price" [(ngModel)]="newItem.price">
+        <button class="btn btn-success col mr-2 mb-2" (click)="createItem()">Create</button>
       </div>
     </div>
   </div>
   <div class="cart" *ngIf="items">
-    <table style="width:100%">
-      <tr>
+    <table style="width:100%" class="table table-bordered table-striped">
+      <tr class="thead-dark">
         <th>UserName</th>
         <th>Item</th>
         <th>Count</th>
@@ -33,8 +30,12 @@
       </tr>
       <tr *ngFor="let order of orders">
         <td>{{order.userId}}</td>
-        <td><p *ngFor="let name of getItemNames()">{{name}}</p></td>
-        <td><p *ngFor="let count of order.counts">{{count}}</p></td>
+        <td>
+          <p *ngFor="let name of getItemNames(order)">{{name}}</p>
+        </td>
+        <td>
+          <p *ngFor="let count of order.counts">{{count}}</p>
+        </td>
         <td>{{order.date.seconds * 1000 | date:'dd.MM.yyyy'}}</td>
       </tr>
     </table>

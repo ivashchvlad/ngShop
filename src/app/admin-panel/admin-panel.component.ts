@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ItemService, Order } from '../services/item.service';
+import { ItemService } from '../services/item.service';
+import { OrderService, Order } from '../services/order.service';
 import { Item } from '../item';
 
 
@@ -12,16 +13,18 @@ export class AdminPanelComponent implements OnInit {
   items: Item[];
   newItem: Item;
   orders: Order[];
-  constructor(private itemService: ItemService) { }
+  constructor(
+    private itemService: ItemService,
+    private orderService: OrderService) {
+    }
 
   ngOnInit() {
     this.newItem = {id: '', name: '', description: '', price: 0, tags: []};
     this.itemService.getItems().subscribe(res => {
       this.items = res;
     });
-    this.itemService.getOrders().subscribe(res => {
+    this.orderService.getOrders().subscribe(res => {
       this.orders = res;
-      console.log(this.orders);
     });
   }
 
@@ -38,13 +41,11 @@ export class AdminPanelComponent implements OnInit {
     return this.itemService.postItem(this.newItem);
   }
 
-  getItemNames() {
+  getItemNames(order) {
     const names: string[] = [];
-    this.orders.map(order => {
       order.itemsId.map(id => {
         names.push(this.items.find(item => item.id === id).name);
       });
-    });
     return names;
   }
 }

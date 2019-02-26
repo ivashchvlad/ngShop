@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Item } from '../item';
 import { ItemService } from '../services/item.service';
 
 
@@ -10,10 +9,19 @@ import { ItemService } from '../services/item.service';
 })
 export class CatalogComponent implements OnInit {
   items: any;
+  byNameChecked: boolean;
+  reverse = true;
+  sortOrder: any = 'name';
   constructor(public itemService: ItemService) { }
 
   ngOnInit() {
     this.items = this.itemService.getItems();
   }
 
+  setOrder(val) {
+    if (this.sortOrder === val) {
+      this.reverse = !this.reverse;
+    }
+    this.sortOrder = val;
+  }
 }

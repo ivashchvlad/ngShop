@@ -22,7 +22,12 @@ export class CartDisplaComponent implements OnInit {
 
   removeOfItem(item: Item) {
     this.itemService.removeFromCart(item);
-    this.itemsInCart.find(cart => cart.item.id === item.id).count--;
+    let x = this.itemsInCart.find(cart => cart.item.id === item.id);
+    if (x.count > 1) {
+      x.count--;
+    } else {
+      this.itemsInCart = this.itemsInCart.filter(i => i !== x);
+    }
   }
 
   totalPrice() {
@@ -31,5 +36,9 @@ export class CartDisplaComponent implements OnInit {
       return totalPrice += item.item.price * item.count;
     });
     return totalPrice;
+  }
+
+  submitOrder() {
+
   }
 }
