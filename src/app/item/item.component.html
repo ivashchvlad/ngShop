@@ -1,8 +1,6 @@
-<p>ITEM WORKS</p>
-<div *ngIf="currentItem" class="container">
+<div *ngIf="currentItem" class="container mt-3">
   <h2>{{currentItem.name}}</h2>
   <p>{{currentItem.description}}</p>
-  <p>{{currentItem.price}}</p>
-  <button (click)="itemService.addToCart(currentItem)">Add {{currentItem.name}} to Cart</button>
+  <p>Price: {{currentItem.price}}</p>
+  <button class="btn btn-outline-primary" (click)="itemService.addToCart(currentItem)">Add {{currentItem.name}} to Cart</button>
 </div>
-<p>WORKS</p>

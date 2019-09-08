@@ -1,16 +1,16 @@
-import { Injectable } from '@angular/core';
+import { LOCAL_STORAGE } from '@ng-toolkit/universal';
+import { Injectable, Inject } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Item } from '../item';
-import { Title } from '@angular/platform-browser';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ItemService {
   private itemCollection: AngularFirestoreCollection<Item>;
-  constructor(
+  constructor(@Inject(LOCAL_STORAGE) private localStorage: any,
     private afs: AngularFirestore
   ) {
     this.itemCollection = afs.collection('items');
@@ -64,36 +64,36 @@ export class ItemService {
   }
 
   addToCart(_item: Item) {
-    const cart: Cart[] = JSON.parse(localStorage.getItem('lcl_cart')) || [];
-    let count: number = JSON.parse(localStorage.getItem('lcl_chrtcount')) || 0;
+    const cart: Cart[] = JSON.parse(this.localStorage.getItem('lcl_cart')) || [];
+    let count: number = JSON.parse(this.localStorage.getItem('lcl_chrtcount')) || 0;
     // Looking for same item in cart
     const index = cart.findIndex((val) => val.item.id === _item.id);
     if (index >= 0) {
       cart[index].count++;
       setTimeout(() => {
-        localStorage.setItem('lcl_cart', JSON.stringify(cart));
+        this.localStorage.setItem('lcl_cart', JSON.stringify(cart));
       }, 100);
     } else {
       cart.push({ item: _item, count: 1 });
       setTimeout(() => {
-        localStorage.setItem('lcl_cart', JSON.stringify(cart));
+        this.localStorage.setItem('lcl_cart', JSON.stringify(cart));
       }, 100);
     }
     count++;
     setTimeout(() => {
-      localStorage.setItem('lcl_chrtcount', JSON.stringify(count));
+      this.localStorage.setItem('lcl_chrtcount', JSON.stringify(count));
     }, 100);
     console.log('item added to cart');
   }
 
   getCart(): Cart[] {
-    const cart: Cart[] = JSON.parse(localStorage.getItem('lcl_cart')) || [];
+    const cart: Cart[] = JSON.parse(this.localStorage.getItem('lcl_cart')) || [];
     return cart;
   }
 
   removeFromCart(_item: Item) {
-    const cart: Cart[] = JSON.parse(localStorage.getItem('lcl_cart')) || [];
-    let count: number = JSON.parse(localStorage.getItem('lcl_chrtcount')) || 0;
+    const cart: Cart[] = JSON.parse(this.localStorage.getItem('lcl_cart')) || [];
+    let count: number = JSON.parse(this.localStorage.getItem('lcl_chrtcount')) || 0;
     const index = cart.findIndex(val => val.item.id === _item.id);
     if (index >= 0) {
       if (cart[index].count === 1) {
@@ -104,18 +104,18 @@ export class ItemService {
     }
     count--;
     setTimeout(() => {
-      localStorage.setItem('lcl_cart', JSON.stringify(cart));
-      localStorage.setItem('lcl_chrtcount', JSON.stringify(count));
+      this.localStorage.setItem('lcl_cart', JSON.stringify(cart));
+      this.localStorage.setItem('lcl_chrtcount', JSON.stringify(count));
     }, 100);
   }
 
   getCartCount(): number {
-    const count = JSON.parse(localStorage.getItem('lcl_chrtcount')) || 0;
+    const count = JSON.parse(this.localStorage.getItem('lcl_chrtcount')) || 0;
     return count;
   }
 
   clearLocalStorage() {
-    localStorage.clear();
+    this.localStorage.clear();
   }
 
 }

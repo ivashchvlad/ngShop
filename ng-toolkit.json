@@ -1,0 +1,8 @@
+{
+  "universal": {
+    "project": "ngshop",
+    "skipInstall": false,
+    "directory": ".",
+    "http": true
+  }
+}

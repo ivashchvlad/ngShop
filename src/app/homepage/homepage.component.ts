@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ItemService } from '../services/item.service';
+import { Item } from '../item';
 
 @Component({
   selector: 'app-homepage',
@@ -6,10 +8,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./homepage.component.sass']
 })
 export class HomepageComponent implements OnInit {
-
-  constructor() { }
+  items: Item[];
+  constructor(public itemService: ItemService) { }
 
   ngOnInit() {
+    this.itemService.getItems().subscribe(res => this.items = res.slice(res.length - 3));
   }
-
 }

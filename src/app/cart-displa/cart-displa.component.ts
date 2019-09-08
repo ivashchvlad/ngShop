@@ -22,11 +22,11 @@ export class CartDisplaComponent implements OnInit {
 
   removeOfItem(item: Item) {
     this.itemService.removeFromCart(item);
-    let x = this.itemsInCart.find(cart => cart.item.id === item.id);
-    if (x.count > 1) {
-      x.count--;
+    const removedItem = this.itemsInCart.find(cart => cart.item.id === item.id);
+    if (removedItem.count > 1) {
+      removedItem.count--;
     } else {
-      this.itemsInCart = this.itemsInCart.filter(i => i !== x);
+      this.itemsInCart = this.itemsInCart.filter(i => i !== removedItem);
     }
   }
 

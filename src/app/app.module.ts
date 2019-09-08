@@ -1,4 +1,7 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { NgtUniversalModule } from '@ng-toolkit/universal';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import { TransferHttpCacheModule } from '@nguniversal/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
@@ -21,6 +24,7 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
 
 import { OrderModule } from 'ngx-order-pipe';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -34,10 +38,14 @@ import { OrderModule } from 'ngx-order-pipe';
     LoginComponent,
     UserSettingsComponent,
     AdminPanelComponent,
-    MyOrdersComponent
+    MyOrdersComponent,
+    FooterComponent
   ],
   imports: [
-    BrowserModule,
+    CommonModule,
+    NgtUniversalModule,
+    TransferHttpCacheModule,
+    HttpClientModule,
     AppRoutingModule,
     FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
@@ -47,6 +55,5 @@ import { OrderModule } from 'ngx-order-pipe';
     AngularFireAuth,
     AngularFirestore
   ],
-  bootstrap: [AppComponent]
 })
 export class AppModule { }

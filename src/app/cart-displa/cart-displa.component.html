@@ -1,8 +1,8 @@
-<div *ngIf="itemsInCart.length===0" class="container text-center m-3">
+<div *ngIf="itemsInCart.length===0" class="container text-center mt-3">
   <h3>Your cart is empty! Add items to your cart.</h3>
 </div>
-<div class="container" *ngIf="itemsInCart.length>0">
-  <div class="d-flex flex-column justify-content-center">
+<div class="container mt-3" *ngIf="itemsInCart.length>0">
+  <div class="d-flex flex-column flex-md-row flex-wrap justify-content-between px-md-5 px-lg-0">
     <div class="items card my-2" *ngFor="let cart of itemsInCart; index as i">
       <div class="card-body">
         <p>Name: {{cart.item.name}}</p>
@@ -14,11 +14,10 @@
       </div>
     </div>
   </div>
-  <div class="totalPrice">
-    <h3>Total Price:</h3>
-    <p>{{totalPrice()}}</p>
-  </div>
-  <div>
-    <button class="btn btn-success" (click)="submitOrder()">Submit the Order</button>
+  <div class="totalPrice pl-3 my-3">
+    <h3>Total Price: {{totalPrice()}}</h3>
+    <div class="my-2">
+      <button class="btn btn-success" (click)="submitOrder()">Submit the Order</button>
+    </div>
   </div>
 </div>

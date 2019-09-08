@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container my-3">
   <div *ngIf='items' class="catalog">
     <div class="filers">
       <p>Order by:</p>
@@ -7,14 +7,14 @@
       <input class="mr-2" type="checkbox" name="byPrice" id="byPrice" (click)="setOrder('price')">
       <label for="byPrice">by price</label>
     </div>
-    <div class="d-inline-flex flex-column flex-md-row flex-wrap">
+    <div class="d-inline-flex flex-column flex-md-row flex-wrap justify-content-center w-100">
       <div class="card m-2"
         *ngFor="let item of ((items | async) | orderBy:sortOrder:reverse:'case-insensitive')">
         <div>
           <div class="card-body">
             <h1>{{item.name}}</h1>
             <p>{{item.description}}</p>
-            <p>{{item.price}}</p>
+            <p>{{item.price}}$</p>
             <button class="btn btn-outline-primary mr-2" [routerLink]="['/catalog/item/', item.id]">Details</button>
             <button class="btn btn-outline-primary" (click)="itemService.addToCart(item)">Add to Cart</button>
           </div>
