@@ -1,3 +1,4 @@
+// Angulr imports
 import { NgtUniversalModule } from '@ng-toolkit/universal';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
@@ -5,11 +6,13 @@ import { TransferHttpCacheModule } from '@nguniversal/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
+// Firebase imports
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 import { AngularFirestore } from '@angular/fire/firestore';
 
+// Components imports
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomepageComponent } from './homepage/homepage.component';
@@ -22,9 +25,9 @@ import { LoginComponent } from './login/login.component';
 import { UserSettingsComponent } from './user-settings/user-settings.component';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
+import { FooterComponent } from './footer/footer.component';
 
 import { OrderModule } from 'ngx-order-pipe';
-import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [

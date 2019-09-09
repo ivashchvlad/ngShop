@@ -1,3 +1,10 @@
 <div class="container mt-3">
+  <p>Email:</p>
+  <input [(ngModel)]="login" type="text">
+  <p>Password</p>
+  <input [(ngModel)]="password" type="text">
+  <br/>
+  <button class="btn btn-primary my-2 ml-auto" (click)="loginWithEmail()">LogIn with Email</button>
+  <br/>
   <button class="btn btn-primary my-2 ml-auto" (click)="loginWithGoogle()">LogIn with Google</button>
 </div>

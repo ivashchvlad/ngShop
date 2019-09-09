@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ItemService, Cart } from '../services/item.service';
+import { OrderService, Order } from '../services/order.service';
 import { Item } from '../item';
 
 @Component({
@@ -9,7 +10,10 @@ import { Item } from '../item';
 })
 export class CartDisplaComponent implements OnInit {
   itemsInCart: Cart[];
-  constructor(public itemService: ItemService) { }
+  constructor(
+    public itemService: ItemService,
+    public orderService: OrderService,
+  ) { }
 
   ngOnInit() {
     this.itemsInCart = this.itemService.getCart();
@@ -39,6 +43,9 @@ export class CartDisplaComponent implements OnInit {
   }
 
   submitOrder() {
-
+    this.orderService.postOrder({
+      counts: this.itemsInCart.map(item => item.count.toString()),
+      itemsId: this.itemsInCart.map(items => items.item.id),
+    })
   }
 }

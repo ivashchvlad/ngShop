@@ -28,6 +28,10 @@ export class AuthService {
     this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
   }
 
+  loginWithEmail(login: string, password: string) {
+    this.afAuth.auth.signInWithEmailAndPassword(login, password);
+  }
+
   logout() {
     this.afAuth.auth.signOut().then(() => {
       this.ngzone.run(() => this.router.navigate(['/']));

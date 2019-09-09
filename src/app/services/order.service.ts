@@ -25,6 +25,15 @@ export class OrderService {
       })
     );
   }
+
+  postOrder(order: any) {
+    return this.afs.collection('orders').add({
+      counts: order.counts,
+      itemsId: order.itemsId,
+      date: new Date(),
+      userId: ''
+    });
+  }
 }
 
 export interface Order {
