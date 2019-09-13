@@ -31,7 +31,7 @@ export class OrderService {
       counts: order.counts,
       itemsId: order.itemsId,
       date: new Date(),
-      userId: ''
+      userId: order.userId,
     });
   }
 }

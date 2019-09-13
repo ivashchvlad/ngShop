@@ -49,5 +49,9 @@ export class AuthService {
   getUserPhotoUrl(): string {
     return (this.userDetail) ? this.userDetail.photoURL : '';
   }
+
+  getUID(): string {
+    return (this.userDetail) ? this.userDetail.uid : '';
+  }
 }
 
