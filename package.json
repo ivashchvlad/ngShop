@@ -39,7 +39,8 @@
     "zone.js": "~0.8.26",
     "@nguniversal/express-engine": "~7.0.0",
     "@nguniversal/common": "~7.0.0",
-    "cors": "~2.8.4"
+    "cors": "~2.8.4",
+    "tar": ">=2.2.2"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.10.0",
