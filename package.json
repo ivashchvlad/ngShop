@@ -40,7 +40,8 @@
     "@nguniversal/express-engine": "~7.0.0",
     "@nguniversal/common": "~7.0.0",
     "cors": "~2.8.4",
-    "tar": ">=2.2.2"
+    "tar": "^2.2.2",
+    "serialize-javascript": "^3.1.0",
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.10.0",
